@@ -1,6 +1,7 @@
-import Container from './components/container';
 import Header from './components/header';
 import Hero from './components/section/hero';
+import Usps from './components/section/usps';
+import VideoCarousel from './components/section/video-carousel';
 import './styles.css';
 
 function App() {
@@ -8,16 +9,12 @@ function App() {
 		<>
 			<Header />
 			<main>
-				<Hero />
-				<div>
-					<Container>usps</Container>
+				<div className='bg-background relative z-10'>
+					<Hero />
+					<Usps />
 				</div>
-				<div>
-					<Container>3 col layout</Container>
-				</div>
-				<div>
-					<Container>Carousel with posters</Container>
-				</div>
+				<VideoCarousel />
+				<div className='h-[300vh]' />
 			</main>
 		</>
 	);

@@ -1,51 +1,48 @@
-import { useRef } from 'react';
 import Button from '../button';
 import Container from '../container';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useScroll, useTransform, motion } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function Hero() {
 	const videoContainerRef = useRef<HTMLDivElement>(null);
-
 	const { scrollYProgress } = useScroll({
 		target: videoContainerRef,
 		offset: ['start start', 'end end'],
 	});
-
 	const opacity = useTransform(scrollYProgress, [0, 0.7, 1], [1, 1, 0]);
 
 	return (
-		<div className='h-[300vh] text-white bg-background relative'>
+		<div className='bg-background text-white'>
 			<motion.div
 				style={{ opacity }}
 				ref={videoContainerRef}
-				className='absolute -top-[--header-height] left-0 w-full h-[200vh]'
+				className='absolute -top-[--header-height] left-0 h-[200vh] w-full'
 			>
 				<img
-					className='sticky top-0 h-screen object-cover'
+					className='sticky top-0 h-screen w-full object-cover'
 					src='/posters/napoleon.webp'
-					alt='Napoleon image'
 				/>
 			</motion.div>
-			<Container className='relative z-10 pb-7 h-[--hero-height]'>
+			<Container className='relative z-10 h-[--hero-height] pb-7'>
 				<motion.div
-					className='flex flex-col h-full items-start justify-end'
+					className='flex h-full flex-col items-start justify-end'
 					variants={{
 						hidden: { opacity: 0 },
-						visible: { opacity: 1, y: 0 },
+						visible: { opacity: 1 },
 					}}
 					whileInView='visible'
 					exit='hidden'
 					animate='hidden'
-					viewport={{ amount: 0.9 }}
+					viewport={{ amount: 0.98 }}
 				>
-					<h1 className='text-5xl font-bold mb-10'>
+					<h1 className='mb-10 text-4xl font-bold md:text-5xl'>
 						All Apple Originals. <br />
 						Only on Apple TV+.
 					</h1>
 					<Button className='mb-16' size='large'>
 						Stream now
 					</Button>
-					<p className='font-semibold'>Watch on the TV app.</p>
+					<p className='font-semibold'>Watch on the 📺 app.</p>
 				</motion.div>
 			</Container>
 		</div>
